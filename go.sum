@@ -1,0 +1,4 @@
+github.com/NeedleInAJayStack/haystack v0.1.7 h1:G0w/DdH6OiPv0pALTvaMYvBIorLaz3yhMupHTqn17Zc=
+github.com/NeedleInAJayStack/haystack v0.1.7/go.mod h1:Oho5sG64nQS27mApp6gWOUi7m4OgzpWllZrOtZn8qss=
+github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
