@@ -1,10 +1,12 @@
 # Haystack Seed
 
-This repo can be used to seed a Haxall database with demo data.
+This repo stores demo data and can push it to a Haystack API.
 
-It was used in 
+It was used to populate a Haxall server for my Grafana Haystack Plugin presentation at Haystack Connect 2023.
 
 ## Usage
+
+First start up a Haystack API. If you don't already have one, [here is a docker image](https://hub.docker.com/repository/docker/needleinajaystack/haxall/general) that can start a local Haxall instance.
 
 To provide credentials, create a `.env` folder in this directory that sets the `HAYSTACK_URL`, 
 `HAYSTACK_USERNAME`, and `HAYSTACK_PASSWORD` environment variables. For example:
