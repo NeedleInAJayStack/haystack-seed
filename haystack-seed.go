@@ -115,6 +115,21 @@ func importHisZinc(file string, client *client.Client) {
 	fmt.Println(result.ToZinc())
 }
 
+func hisGridToDate(grid haystack.Grid, date haystack.Date) haystack.Grid {
+	builder := haystack.NewGridBuilder()
+	builder.AddMetaDict(grid.Meta())
+	for _, col := range grid.Cols() {
+		builder.AddColDict(col.Name(), col.Meta())
+	}
+	for _, row := range grid.Rows() {
+		ts := row.Get("ts").(haystack.DateTime)
+		newTs := haystack.NewDateTime(date, ts.Time(), ts.TzOffset(), ts.Tz())
+
+		builder.AddRow([]haystack.Val{newTs, row.Get("val")})
+	}
+	return builder.ToGrid()
+}
+
 // Query the folio database for the provided filter. Mainly used for testing.
 func read(filter string, client *client.Client) {
 	sites, readErr := client.Read(filter)
