@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/NeedleInAJayStack/haystack"
@@ -61,6 +62,16 @@ func importFolioTrio(file string, client *client.Client) {
 		panic(evalErr)
 	}
 	fmt.Println(result.ToZinc())
+}
+
+func importAllHis(client *client.Client) {
+	files, globErr := filepath.Glob("data/his/*.zinc")
+	if globErr != nil {
+		panic(globErr)
+	}
+	for _, file := range files {
+		importHisZinc(file, client)
+	}
 }
 
 // Import a zinc file into the history database. It is expected that the file name matches the point ID and that the
