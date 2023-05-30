@@ -15,13 +15,16 @@ import (
 func main() {
 	client := startup()
 	// importFolioTrio("data/folio/alpha.trio", client)
-	importHisZinc("data/his/a-07bd.zinc", client)
+	// importFolioTrio("data/folio/bravo.trio", client)
+	// importFolioTrio("data/folio/charlie.trio", client)
 
-	readHis(
-		haystack.NewRef("a-07bd", ""),
-		"today",
-		client,
-	)
+	// importAllHis(client, []haystack.Date{})
+	importAllHis(client, []haystack.Date{
+		haystack.NewDate(2023, 5, 29),
+		haystack.NewDate(2023, 5, 30),
+	})
+
+	// importHisZinc("data/his/a-076b.zinc", client)
 }
 
 // Start up a new client
@@ -64,13 +67,19 @@ func importFolioTrio(file string, client *client.Client) {
 	fmt.Println(result.ToZinc())
 }
 
-func importAllHis(client *client.Client) {
+func importAllHis(client *client.Client, dates []haystack.Date) {
 	files, globErr := filepath.Glob("data/his/*.zinc")
 	if globErr != nil {
 		panic(globErr)
 	}
 	for _, file := range files {
-		importHisZinc(file, client)
+		if len(dates) == 0 {
+			importHisZinc(file, client, nil)
+		} else {
+			for _, date := range dates {
+				importHisZinc(file, client, &date)
+			}
+		}
 	}
 }
 
@@ -78,7 +87,7 @@ func importAllHis(client *client.Client) {
 // zinc columns are "ts" and "his".
 //
 // The history database is purged whenever the process is stopped.
-func importHisZinc(file string, client *client.Client) {
+func importHisZinc(file string, client *client.Client, date *haystack.Date) {
 	path := strings.Split(file, string(os.PathSeparator))
 	nameWithExt := path[len(path)-1]
 	name := strings.Split(nameWithExt, ".")[0]
@@ -101,6 +110,10 @@ func importHisZinc(file string, client *client.Client) {
 		grid = val
 	default:
 		panic("Zinc file is not a grid: " + file)
+	}
+
+	if date != nil {
+		grid = hisGridToDate(grid, *date)
 	}
 
 	hisItems := []haystack.Dict{}
