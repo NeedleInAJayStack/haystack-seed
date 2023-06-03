@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/NeedleInAJayStack/haystack"
@@ -13,14 +14,23 @@ import (
 
 func main() {
 	client := startup()
-	// importFolioTrio("data/folio/alpha.trio", client)
-	importHisZinc("data/his/a-07bd.zinc", client)
+	importFolioTrio("data/folio/alpha.trio", client)
+	importFolioTrio("data/folio/bravo.trio", client)
+	importFolioTrio("data/folio/charlie.trio", client)
 
-	readHis(
-		haystack.NewRef("a-07bd", ""),
-		"today",
-		client,
-	)
+	// importAllHis(client, []haystack.Date{})
+	importAllHis(client, []haystack.Date{
+		haystack.NewDate(2023, 6, 1),
+		haystack.NewDate(2023, 6, 2),
+		haystack.NewDate(2023, 6, 3),
+		haystack.NewDate(2023, 6, 4),
+		haystack.NewDate(2023, 6, 5),
+		haystack.NewDate(2023, 6, 6),
+		haystack.NewDate(2023, 6, 7),
+		haystack.NewDate(2023, 6, 8),
+	})
+
+	// importHisZinc("data/his/a-076b.zinc", client)
 }
 
 // Start up a new client
@@ -63,11 +73,27 @@ func importFolioTrio(file string, client *client.Client) {
 	fmt.Println(result.ToZinc())
 }
 
+func importAllHis(client *client.Client, dates []haystack.Date) {
+	files, globErr := filepath.Glob("data/his/*.zinc")
+	if globErr != nil {
+		panic(globErr)
+	}
+	for _, file := range files {
+		if len(dates) == 0 {
+			importHisZinc(file, client, nil)
+		} else {
+			for _, date := range dates {
+				importHisZinc(file, client, &date)
+			}
+		}
+	}
+}
+
 // Import a zinc file into the history database. It is expected that the file name matches the point ID and that the
 // zinc columns are "ts" and "his".
 //
 // The history database is purged whenever the process is stopped.
-func importHisZinc(file string, client *client.Client) {
+func importHisZinc(file string, client *client.Client, date *haystack.Date) {
 	path := strings.Split(file, string(os.PathSeparator))
 	nameWithExt := path[len(path)-1]
 	name := strings.Split(nameWithExt, ".")[0]
@@ -92,6 +118,10 @@ func importHisZinc(file string, client *client.Client) {
 		panic("Zinc file is not a grid: " + file)
 	}
 
+	if date != nil {
+		grid = hisGridToDate(grid, *date)
+	}
+
 	hisItems := []haystack.Dict{}
 	for _, row := range grid.Rows() {
 		hisItems = append(hisItems, row.ToDict())
@@ -102,6 +132,21 @@ func importHisZinc(file string, client *client.Client) {
 		panic(hisErr)
 	}
 	fmt.Println(result.ToZinc())
+}
+
+func hisGridToDate(grid haystack.Grid, date haystack.Date) haystack.Grid {
+	builder := haystack.NewGridBuilder()
+	builder.AddMetaDict(grid.Meta())
+	for _, col := range grid.Cols() {
+		builder.AddColDict(col.Name(), col.Meta())
+	}
+	for _, row := range grid.Rows() {
+		ts := row.Get("ts").(haystack.DateTime)
+		newTs := haystack.NewDateTime(date, ts.Time(), ts.TzOffset(), ts.Tz())
+
+		builder.AddRow([]haystack.Val{newTs, row.Get("val")})
+	}
+	return builder.ToGrid()
 }
 
 // Query the folio database for the provided filter. Mainly used for testing.

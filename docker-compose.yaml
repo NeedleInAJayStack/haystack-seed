@@ -1,0 +1,21 @@
+version: '3.0'
+
+services:
+  haxall:
+    image: "needleinajaystack/haxall:latest"
+    environment:
+      - SU_USER=su
+      - SU_PASS=su
+    ports:
+      - 8080:8080/tcp
+    volumes:
+      - haxall:/opt/haxall/proj
+  grafana:
+    image: "grafana/grafana-oss:latest"
+    ports:
+      - 3000:3000/tcp
+    volumes:
+      - grafana:/var/lib/grafana
+volumes:
+  haxall:
+  grafana:

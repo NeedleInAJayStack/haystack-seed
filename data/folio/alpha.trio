@@ -9,6 +9,7 @@ geoElevation:2956m
 geoPostalCode:"80821"
 geoState:CO
 geoStreet:"123 Prarie St"
+primaryFunction:Hospital
 site
 tz:Denver
 weatherStationRef:@a-07eb
@@ -31408,6 +31409,7 @@ id:@a-076b
 dis:Alpha Waterside CH-1 Chilled Water Leaving Temp
 chilled
 cur
+currentVal:41°F
 equipRef:@a-0766
 his
 kind:Number
