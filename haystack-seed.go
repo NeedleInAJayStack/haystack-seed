@@ -14,14 +14,20 @@ import (
 
 func main() {
 	client := startup()
-	// importFolioTrio("data/folio/alpha.trio", client)
-	// importFolioTrio("data/folio/bravo.trio", client)
-	// importFolioTrio("data/folio/charlie.trio", client)
+	importFolioTrio("data/folio/alpha.trio", client)
+	importFolioTrio("data/folio/bravo.trio", client)
+	importFolioTrio("data/folio/charlie.trio", client)
 
 	// importAllHis(client, []haystack.Date{})
 	importAllHis(client, []haystack.Date{
-		haystack.NewDate(2023, 5, 29),
-		haystack.NewDate(2023, 5, 30),
+		haystack.NewDate(2023, 6, 1),
+		haystack.NewDate(2023, 6, 2),
+		haystack.NewDate(2023, 6, 3),
+		haystack.NewDate(2023, 6, 4),
+		haystack.NewDate(2023, 6, 5),
+		haystack.NewDate(2023, 6, 6),
+		haystack.NewDate(2023, 6, 7),
+		haystack.NewDate(2023, 6, 8),
 	})
 
 	// importHisZinc("data/his/a-076b.zinc", client)
