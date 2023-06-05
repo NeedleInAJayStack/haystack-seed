@@ -1,0 +1,45 @@
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+{
+  "manifestVersion": "2.0.0",
+  "signatureType": "community",
+  "signedByOrg": "needleinajaystack",
+  "signedByOrgName": "needleinajaystack",
+  "plugin": "needleinajaystack-haystack-datasource",
+  "version": "0.0.10",
+  "time": 1685515884011,
+  "keyId": "7e4d0c6a708866e7",
+  "files": {
+    "img/logo.svg": "1defc6f7e585c67657bcfd8fddc599ee7dfa82f8674413f49fa274c2cd453ec6",
+    "img/project-haystack-logo.png": "1f44a1dee457db469f6539b5b982d6e69f0c540f7e112b6bbd5236f6a55f7e70",
+    "img/screenshot/dashboard.png": "75b186d979755d5cf5c27fd6534f1ae9ee58256b13e2515b7edd95223ff249d4",
+    "img/screenshot/query-editor.png": "dbdbfa98b04d59149a2698ea261fe92416f5a94c8febdb1f74bdfbe120cf7d14",
+    "img/screenshot/variable-editor.png": "ea8f37dd81c342ca8aa194c2a8e4a9acaa21f06da7fb747efa7fe3818764f892",
+    "gpx_haystack_datasource_linux_arm": "af2f7a0a624b61344c62c1b58abbbd0f566150474b07ef3c58b0b263a93941bf",
+    "README.md": "d3a6981eaa0becfc432b7cf59a401c9cb626cddb0135acf516a66629531e2da2",
+    "gpx_haystack_datasource_darwin_arm64": "8d4a12362364a10cf308016c0b8c0ea83d00e28146ff0bf6c639221196e01de9",
+    "module.js": "86d8cc14936cd2763d08d2fca2cf444786eaa09dc6941b62de739f9c1d60a59a",
+    "plugin.json": "8504c56c3fd4681f66caaef3441c0cbe297ff268b3e25c85b2a1085d7c81f834",
+    "go_plugin_build_manifest": "5ca19e58a4e116e72c4c78725e4aa3d447dc50db8de4220300fe5d00ff22f4e5",
+    "gpx_haystack_datasource_linux_amd64": "e1cc603326ecd5e0c57eae9bb00ed0f676fa0df8328471a7a050be7e7841c626",
+    "gpx_haystack_datasource_linux_arm64": "4bab77758f5b71e7a657e08e99ded5e50faa93766d69597b79bec5c622c56157",
+    "CHANGELOG.md": "0a57b86a267da7d4024318b2312c02d69104684b8014f06740df407579272d84",
+    "module.js.map": "132a9e504cd1a61828e842e17c9995f330d7fc0ca12354708c171d5b667235df",
+    "gpx_haystack_datasource_windows_amd64.exe": "61db05bd1d0dab82e1dbfb936d8d10e9cf59801ce115c5bfa583c31b6cd9f1a2",
+    "gpx_haystack_datasource_darwin_amd64": "38f7d1fc1dd5616200d73f11c0d6a6f4f52e9d69a30150353f4a00f741baef16",
+    "LICENSE": "c5accbbd8546e94c34aed24afe689a617627d18eed5a6c48277e48db57c23851"
+  }
+}
+-----BEGIN PGP SIGNATURE-----
+Version: OpenPGP.js v4.10.10
+Comment: https://openpgpjs.org
+
+wrkEARMKAAYFAmR27mwAIQkQfk0ManCIZucWIQTzOyW2kQdOhGNlcPN+TQxq
+cIhm5yPXAgkBCbXEFLbdHiBy4zhudLgVzvIqnBeV4g8vuCVZ0Tp+3tSU+pCv
+1IdDvN+01H/hattLOw7jyT65gW3gomiU3a3zKGECCQEyaOIZtoZkwpnfTyf9
+eRSvbvvCFUlHGrM678x344izeztE5nrMTThOqHIKm4o4AGRLn910yMGW/Ukm
+nDndp7y3AQ==
+=3CTI
+-----END PGP SIGNATURE-----

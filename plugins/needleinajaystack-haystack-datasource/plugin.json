@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
+  "type": "datasource",
+  "name": "Haystack",
+  "id": "needleinajaystack-haystack-datasource",
+  "metrics": true,
+  "backend": true,
+  "alerting": true,
+  "executable": "gpx_haystack_datasource",
+  "info": {
+    "description": "A Grafana data source for Haystack tagged data",
+    "author": {
+      "name": "NeedleInAJayStack"
+    },
+    "keywords": ["datasource"],
+    "logos": {
+      "small": "img/project-haystack-logo.png",
+      "large": "img/project-haystack-logo.png"
+    },
+    "links": [],
+    "screenshots": [
+      {
+        "name": "Dashboard",
+        "path": "img/screenshot/dashboard.png"
+      },
+      {
+        "name": "Query Editor",
+        "path": "img/screenshot/query-editor.png"
+      },
+      {
+        "name": "Variable Editor",
+        "path": "img/screenshot/variable-editor.png"
+      }
+    ],
+    "version": "0.0.10",
+    "updated": "2023-05-31"
+  },
+  "dependencies": {
+    "grafanaDependency": ">=9.2.5",
+    "plugins": []
+  }
+}
